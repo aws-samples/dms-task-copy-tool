@@ -1,0 +1,77 @@
+{
+  "ad_username": "user@xyz.com",
+  "src_account_id": "111111111111",
+  "src_account_role": "sso-devops-iam-role",
+  "src_account_region": "us-east-1",
+  "ad_authentication": false,
+  "identity_service_url": "https://api.aic-identity-ssvc.xyz.com/creds",
+  "sts_src_role_arn": "arn:aws:iam::111111111111:role/MyAssumeRole",
+  "sts_tgt_role_arn": "arn:aws:iam::222222222222:role/MyAssumeRole",
+  "cert_verify_flag": false,
+  "rep_task_tag_filters": [
+    {
+      "Key": "DMS_ENV",
+      "Values": [
+        "DEV"
+      ]
+    }
+  ],
+  "dest_account_id": "222222222222",
+  "dest_account_role": "sso-devops-iam-role",
+  "dest_account_region": "us-east-1",
+  "dest_environment": "stage2",
+  "dms_task_import_export_subdir": "dmstasksdir",
+  "promt_start_dms_tasks": "false",
+  "auto_start_dms_tasks_on_creation": "false",
+  "endpoints_separate_elem_approach": "false",
+
+  "endpoints": [
+    {
+      "endpoint_arn": "",
+      "endpoint_identifier": "",
+      "endpoint_identifier_new": "",
+      "endpoint_identifier_special_chars": "_$",
+      "endpoint_type": "source",
+      "engine_name": "",
+      "user_name": "DMS_User",
+      "password": "",
+      "server_name": "",
+      "database_port": "",
+      "database_name": "",
+      "extra_conn_attr": ""
+    },
+    {
+      "endpoint_arn": "",
+      "endpoint_identifier": "",
+      "endpoint_identifier_new": "",
+      "endpoint_identifier_special_chars": "_",
+      "endpoint_type": "target",
+      "engine_name": "",
+      "user_name": "testdb_admin_user",
+      "password": "",
+      "server_name": "",
+      "database_port": "",
+      "database_name": "",
+      "extra_conn_attr": ""
+    }
+  ],
+
+  "rep_instances": [
+    {
+      "rep_instance_arn": "",
+      "rep_instance_identifier": "",
+      "rep_instance_identifier_new": "",
+      "allocated_storage": "100",
+      "rep_instance_class": "dms.t3.medium",
+      "rep_engine_version": "3.4.4",
+      "vpc_security_group_ids": [
+        ""
+      ],
+      "availability_zone": "",
+      "rep_subnet_grp_identifier": "",
+      "preferred_maint_window": "Sat:04:10-Sat:05:00",
+      "multi_az_bool": false,
+      "publicly_accessible_bool": false
+    }
+  ]
+}
