@@ -21,9 +21,7 @@ pip install -r requirements.txt
 
 Next, modify the dms_config.json file attributes based on the word document (DMSTaskCopy_README.docx) supplied in this repository. This word document serves to explain all the attributes required for the DMS Task Copy Tool to work as intended.
 
-Please note that you must have the correct cross account IAM roles created in AWS source and target accounts with STS:AssumeRole permissions. Note: This is only required if you are authenticating outside of AD (Active Directory) directly with your source and target AWS accounts.
-
-These IAM role ARN's must be defined in the dms_config.json file for the 'sts_src_role_arn' and 'sts_tgt_role_arn' attributes and the 'ad_authentication' option in the dms_config.json file must be set to 'false'. Otherwise, you must define your AD user name against 'ad_username' option in the config file and also specify the identity service exposed which can accept the AD user name and authenticate using a pre-defined role for both your source and target AWS accounts. Note: The tool expects the AD password credential to be set as an environment variable.
+Please note that you must have the correct cross account IAM roles created in AWS source and target accounts with STS:AssumeRole permissions. These IAM role ARN's must be defined in the dms_config.json file for the 'sts_src_role_arn' and 'sts_tgt_role_arn' attributes and the 'ad_authentication' option in the dms_config.json file must be set to 'false'. 
 
 When you run the tool, only the mode argument is mandatory:
 
