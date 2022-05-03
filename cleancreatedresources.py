@@ -24,12 +24,13 @@ from itertools import chain
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class CleanResources:
-    def  __init__(self, dmsconn, dmsresconn, tag_key, tag_value, logger):
+    def  __init__(self, dmsconn, dmsresconn, tag_key, tag_value, logger, maxworkers):
         self.tag_key = tag_key
         self.tag_value = tag_value
         self.logger = logger
         self.dmsresconn = dmsresconn
         self.dmsconn = dmsconn
+        self.maxworkers = maxworkers
 
     def deleteEndpoints(self, jepdata, index):
         retryFlag = True
@@ -84,7 +85,7 @@ class CleanResources:
             #print("After get resources = ", response)
             jepresdata = response
             self.logger.info("Source Account Endpoints Filtered By Tag (jepresdata)= {0}".format(jepresdata))
-            with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=self.maxworkers) as executor:
                 future_to_eps = {executor.submit(self.deleteEndpoints, jepresdata, i): i for i in range(sum([len(jepresdata['ResourceTagMappingList'])]))}
                 for future in concurrent.futures.as_completed(future_to_eps):
                     x = future_to_eps[future]
@@ -151,7 +152,7 @@ class CleanResources:
             #print("After get resources = ", response)
             jepresdata = response
             self.logger.info("Source Account Replication Instances Filtered By Tag (jepresdata)= {0}".format(jepresdata))
-            with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=self.maxworkers) as executor:
                 future_to_insts = {executor.submit(self.deleteRepInstances, jepresdata, i): i for i in range(sum([len(jepresdata['ResourceTagMappingList'])]))}
                 for future in concurrent.futures.as_completed(future_to_insts):
                     x = future_to_insts[future]
@@ -218,7 +219,7 @@ class CleanResources:
                 ],
                ResourcesPerPage=100) )
             i = 0
-            with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=self.maxworkers) as executor:
                 for task in task_mappings:
                     i = i + 1
                     future_to_tasks = {executor.submit(self.deleteRepTasks, task, i)}

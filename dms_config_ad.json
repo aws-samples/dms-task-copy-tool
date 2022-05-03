@@ -1,12 +1,13 @@
 {
+  "ad_username": "user@xyz.com",
   "src_account_id": "111111111111",
-  "src_account_region": "ap-south-1",
-  "dest_account_id": "222222222222",
-  "dest_account_region": "ap-south-1",
-  "dest_environment": "stage2",
+  "src_account_role": "sso-devops-iam-role",
+  "src_account_region": "us-east-1",
+  "ad_authentication": false,
+  "identity_service_url": "https://api.aic-identity-ssvc.xyz.com/creds",
   "sts_src_role_arn": "arn:aws:iam::111111111111:role/MyAssumeRole",
   "sts_tgt_role_arn": "arn:aws:iam::222222222222:role/MyAssumeRole",
-  "ad_authentication": false,
+  "cert_verify_flag": false,
   "rep_task_tag_filters": [
     {
       "Key": "DMS_ENV",
@@ -15,6 +16,10 @@
       ]
     }
   ],
+  "dest_account_id": "222222222222",
+  "dest_account_role": "sso-devops-iam-role",
+  "dest_account_region": "us-east-1",
+  "dest_environment": "stage2",
   "dms_task_import_export_subdir": "dmstasksdir",
   "promt_start_dms_tasks": "false",
   "auto_start_dms_tasks_on_creation": "false",
@@ -28,7 +33,7 @@
       "endpoint_identifier_special_chars": "_$",
       "endpoint_type": "source",
       "engine_name": "",
-      "user_name": "DMS_ReadOnly",
+      "user_name": "DMS_User",
       "password": "xyz",
       "server_name": "",
       "database_port": "",
@@ -57,14 +62,14 @@
       "rep_instance_identifier": "",
       "rep_instance_identifier_new": "",
       "allocated_storage": "",
-      "rep_instance_class": "",
+      "rep_instance_class": "dms.t3.micro",
       "rep_engine_version": "",
       "vpc_security_group_ids": [
         ""
       ],
       "availability_zone": "",
       "rep_subnet_grp_identifier": "",
-      "preferred_maint_window": "",
+      "preferred_maint_window": "Sat:04:10-Sat:05:00",
       "multi_az_bool": false,
       "publicly_accessible_bool": false
     }

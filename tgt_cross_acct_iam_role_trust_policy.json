@@ -1,0 +1,16 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": [
+					"arn:aws:iam::222222222222:user/admin",
+					"arn:aws:iam::111111111111:user/admin"
+				]
+			},
+			"Action": "sts:AssumeRole",
+			"Condition": {}
+		}
+	]
+}
