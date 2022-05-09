@@ -947,7 +947,7 @@ if __name__ == '__main__':
             {
                 'Name': 'group-name',
                 'Values': [
-                    'default'
+                    jdata['default_security_group_name']
                 ]
             },
         ]

@@ -50,7 +50,7 @@
       "extra_conn_attr": ""
     }
   ],
-
+  "default_security_group_name": "default",
   "rep_instances": [
     {
       "rep_instance_arn": "",
